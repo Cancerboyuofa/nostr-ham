@@ -11,6 +11,9 @@ load_dotenv(dotenv_path)
 pvt_key = os.environ.get('PRIVATE_KEY')
 pub_key = os.environ.get('PUBLIC_KEY')
 
+
+#Create Keys Function
+
 def create_keys():
 
     private_key = PrivateKey()
@@ -22,7 +25,23 @@ def create_keys():
 
     return [private_key_hex, public_key_hex]
 
-new_keys = create_keys()
 
-set_key('.env', 'PRIVATE_KEY', new_keys[0])
-set_key('.env', 'PUBLIC_KEY', new_keys[1])
+if pvt_key == '' or pub_key == '':
+
+    print("No Existing Keys Found. Creating...\n")
+
+    new_keys = create_keys()
+
+    set_key('src/.env', 'PRIVATE_KEY', new_keys[0])
+    set_key('src/.env', 'PUBLIC_KEY', new_keys[1])
+
+    print("Here are your new keys, write them down!\n")
+
+    print("Public Key: " + new_keys[0] + "\n")
+    print("Private Key:" + new_keys[1] + "\n")
+    
+else:
+    print("Existing Keys Found, they are:\n")
+
+    print("Public Key: " + pub_key + "\n")
+    print("Private Key:" + pvt_key + "\n")
