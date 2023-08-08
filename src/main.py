@@ -1,22 +1,25 @@
 import fldigi as fl
+import key
+
+
 
 
 # ------- FLDigi Setup Calls and TX HERE ----------#
 
-fl.radio_setup("BPSK63", 1000)
+# fl.radio_setup("BPSK63", 1000)
 
-print('Setting up radio...')
+# print('Setting up radio...')
 
-text = input('Please enter the text to transmit:\n')
+# text = input('Please enter the text to transmit:\n')
 
-confirm_tx = input("Do you want to transmit? Y/N\n")
+# confirm_tx = input("Do you want to transmit? Y/N\n")
 
-if confirm_tx.upper() == 'Y':
+# if confirm_tx.upper() == 'Y':
 
-    fl.send_tx("<MYCALL> " + text)
+#     fl.send_tx("<MYCALL> " + text)
 
-else:
-    print("You chose not to transmit")
+# else:
+#     print("You chose not to transmit")
 
 
 

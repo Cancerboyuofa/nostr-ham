@@ -3,45 +3,52 @@ from pynostr.key import PrivateKey
 from os.path import join, dirname
 import os
 
-# Check env for existing keys, if null, then create
+if __name__ == "__main__":
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+    # Check env for existing keys, if null, then create
 
-pvt_key = os.environ.get('PRIVATE_KEY')
-pub_key = os.environ.get('PUBLIC_KEY')
+    def get_key():
 
-
-#Create Keys Function
-
-def create_keys():
-
-    private_key = PrivateKey()
-    private_key_hex = private_key.bech32()
+        dotenv_path = join(dirname(__file__), '.env')
+        load_dotenv(dotenv_path)
 
 
-    public_key = private_key.public_key
-    public_key_hex = public_key.bech32()
+        pvt_key = os.environ.get('PRIVATE_KEY')
+        pub_key = os.environ.get('PUBLIC_KEY')
 
-    return [private_key_hex, public_key_hex]
+        return pvt_key, pub_key
 
 
-if pvt_key == '' or pub_key == '':
+    #Create Keys Function
 
-    print("No Existing Keys Found. Creating...\n")
+    def create_keys():
 
-    new_keys = create_keys()
+        private_key = PrivateKey()
+        private_key_hex = private_key.bech32()
 
-    set_key('src/.env', 'PRIVATE_KEY', new_keys[0])
-    set_key('src/.env', 'PUBLIC_KEY', new_keys[1])
 
-    print("Here are your new keys, write them down!\n")
+        public_key = private_key.public_key
+        public_key_hex = public_key.bech32()
 
-    print("Public Key: " + new_keys[0] + "\n")
-    print("Private Key:" + new_keys[1] + "\n")
-    
-else:
-    print("Existing Keys Found, they are:\n")
+        return [private_key_hex, public_key_hex]
 
-    print("Public Key: " + pub_key + "\n")
-    print("Private Key:" + pvt_key + "\n")
+
+    if pvt_key == '' or pub_key == '':
+
+        print("No Existing Keys Found. Creating...\n")
+
+        new_keys = create_keys()
+
+        set_key('src/.env', 'PRIVATE_KEY', new_keys[0])
+        set_key('src/.env', 'PUBLIC_KEY', new_keys[1])
+
+        print("Here are your new keys, write them down!\n")
+
+        print("Public Key: " + new_keys[0] + "\n")
+        print("Private Key:" + new_keys[1] + "\n")
+        
+    else:
+        print("Existing Keys Found, they are:\n")
+
+        print("Public Key: " + pub_key + "\n")
+        print("Private Key:" + pvt_key + "\n")
