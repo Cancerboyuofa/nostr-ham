@@ -1,7 +1,7 @@
 import fldigi as fl
 
 
-# ------- FLDigi Calls Done ----------#
+# ------- FLDigi Setup Calls and TX HERE ----------#
 
 fl.radio_setup("BPSK63", 1000)
 
@@ -17,6 +17,8 @@ if confirm_tx.upper() == 'Y':
 
 else:
     print("You chose not to transmit")
+
+
 
 # ------- BEGIN NOSTR ------------ #
 
