@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+from dotenv import load_dotenv, set_key
 from pynostr.key import PrivateKey
 from os.path import join, dirname
 import os
@@ -24,5 +24,5 @@ def create_keys():
 
 new_keys = create_keys()
 
-print(new_keys[0])
-print(new_keys[1])
+set_key('.env', 'PRIVATE_KEY', new_keys[0])
+set_key('.env', 'PUBLIC_KEY', new_keys[1])
