@@ -62,7 +62,7 @@ if __name__ == "__main__":
         
         rx_text = fldigi.text.get_rx_data()
 
-        return str(rx_text, 'utf-8')
+        return rx_text
 
 
     #LOGIC GOES UNDER HERE
@@ -82,8 +82,8 @@ if __name__ == "__main__":
         if get_rx():
 
             decoded = (get_rx())
-            #decoded_string = decoded.decode()
-            print (decoded)
+            decoded_string = decoded.decode()
+            print (decoded_string)
 
             msg_recived = True
             
