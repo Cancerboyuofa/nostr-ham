@@ -3,52 +3,37 @@ from pynostr.key import PrivateKey
 from os.path import join, dirname
 import os
 
-if __name__ == "__main__":
 
     # Check env for existing keys, if null, then create
 
-    def get_key():
+def get_keys():
 
-        dotenv_path = join(dirname(__file__), '.env')
-        load_dotenv(dotenv_path)
-
-
-        pvt_key = os.environ.get('PRIVATE_KEY')
-        pub_key = os.environ.get('PUBLIC_KEY')
-
-        return pvt_key, pub_key
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
 
 
-    #Create Keys Function
+    pvt_key = os.environ.get('PRIVATE_KEY')
+    pub_key = os.environ.get('PUBLIC_KEY')
 
-    def create_keys():
-
-        private_key = PrivateKey()
-        private_key_hex = private_key.bech32()
+    return [pvt_key, pub_key]
 
 
-        public_key = private_key.public_key
-        public_key_hex = public_key.bech32()
+    # Create Keys Function
 
-        return [private_key_hex, public_key_hex]
+def create_keys():
 
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
 
-    if pvt_key == '' or pub_key == '':
+    private_key = PrivateKey()
+    private_key_hex = private_key.bech32()
 
-        print("No Existing Keys Found. Creating...\n")
+    public_key = private_key.public_key
+    public_key_hex = public_key.bech32()
 
-        new_keys = create_keys()
+    print(private_key)
 
-        set_key('src/.env', 'PRIVATE_KEY', new_keys[0])
-        set_key('src/.env', 'PUBLIC_KEY', new_keys[1])
+    set_key('src/.env', 'PRIVATE_KEY', str(private_key))
+    set_key('src/.env', 'PUBLIC_KEY', str(public_key))
 
-        print("Here are your new keys, write them down!\n")
-
-        print("Public Key: " + new_keys[0] + "\n")
-        print("Private Key:" + new_keys[1] + "\n")
-        
-    else:
-        print("Existing Keys Found, they are:\n")
-
-        print("Public Key: " + pub_key + "\n")
-        print("Private Key:" + pvt_key + "\n")
+    return [private_key_hex, public_key_hex]
