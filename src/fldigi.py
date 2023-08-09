@@ -1,17 +1,20 @@
 import pyfldigi
 import time
 
-if __name__ == "__main__":
+# ----------FLDIGI START AND INIT CLASS  ---------- #
+
+def fldigi_prog():
 
     msg_recived = False
-
-
-    #FLDIGI START AND INITIALIZE HERE
-
     fldigi = pyfldigi.Client()
 
+    #if __name__ == "__main__":
 
-    #GETTERS AND SETTERS HERE
+
+    
+
+
+    # ---- GETTERS AND SETTERS HERE ---- #
 
 
     def get_modem_name():
@@ -103,4 +106,3 @@ if __name__ == "__main__":
         
             print("Nope, continuing to listen")
             time.sleep(1)
-

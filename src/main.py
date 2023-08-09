@@ -7,6 +7,8 @@ import relay
 
 # -------------------- FLDigi Setup & TX ------------------------ #
 
+#fl.fldigi_prog()
+
 
 # fl.radio_setup("BPSK63", 1000)
 
@@ -37,23 +39,23 @@ public_key = check_keys[1]
 
 
 if public_key != '' or private_key != '':
-        print("Keys found! They are:")
-        print("Public Key: " + public_key + "\n")
-        print("Private Key:" + private_key + "\n")
+        print("Existing Keys found!\n")
+        #print("Public Key: " + public_key + "\n")
+        #print("Private Key:" + private_key + "\n")
 
 else:
         print("Keys don't exist! Creating new ones\n")
 
         new_keys = key.create_keys()
         
-        print('Created keypair:')
+        print('Created keypair.\n')
         
-        print("Public Key: " + new_keys[1] + "\n")
-        print("Private Key:" + new_keys[0] + "\n")
+        #print("Public Key: " + new_keys[1] + "\n")
+        #print("Private Key:" + new_keys[0] + "\n")
 
         private_key = check_keys[0]
         public_key = check_keys[1]      
 
 # --- Open Relay Socket and Get Last 10 Posts(test only) --- #
 
-relay.open_socket("32e1827635450ebb3c5a7d12c1f8e7b2b514439ac10a67eef3d9fd9c5c68e245")
+relay.open_socket("e3aefda887252a72cee3578d33b2dcd90e9fe53b8bed6347ef5e26f74211adbb")
