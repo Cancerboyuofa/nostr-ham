@@ -1,108 +1,120 @@
 import pyfldigi
 import time
 
+fldigi = pyfldigi.Client()
+
+msg_recived = False
+
 # ----------FLDIGI START AND INIT CLASS  ---------- #
 
-def fldigi_prog():
+ 
+#if __name__ == "__main__":
 
-    msg_recived = False
-    fldigi = pyfldigi.Client()
 
-    #if __name__ == "__main__":
+# ---- GETTERS AND SETTERS HERE ---- #
 
+
+def get_modem_name():
+
+    return fldigi.modem.name
+
+def get_modem_carrier():
+
+    return fldigi.modem.name
+
+def get_rig_frequency():
+
+    return fldigi.rig.frequency
+
+def get_rig_mode():
+
+    return fldigi.rig.frequency
+
+def get_text():
+
+    print(fldigi.text.get_tx_data())
+
+def set_modem(name, carrier):
+
+    fldigi.modem.name = name
+
+    fldigi.modem.name = name
+
+    fldigi.modem.carrier = carrier
+
+def set_frequency(frequency, mode):
+    fldigi.rig.frequency = frequency
+    fldigi.rig.mode = mode
+
+
+def send_tx(json):
 
     
+    fldigi.text.clear_tx()
+    fldigi.text.add_tx(json)
+    fldigi.main.send(json, block=True, timeout=500)
+
+    print("Text Sent..")
 
 
-    # ---- GETTERS AND SETTERS HERE ---- #
+def get_rx():
 
-
-    def get_modem_name():
-
-        return fldigi.modem.name
-
-    def get_modem_carrier():
-
-        return fldigi.modem.name
-
-    def get_rig_frequency():
-
-        return fldigi.rig.frequency
-
-    def get_rig_mode():
-
-        return fldigi.rig.frequency
-
-    def get_text():
-
-        print(fldigi.text.get_tx_data())
-
-    def set_modem(name, carrier):
-
-        fldigi.modem.name = name
-
-        fldigi.modem.name = name
-
-        fldigi.modem.carrier = carrier
-
-    def set_frequency(frequency, mode):
-        fldigi.rig.frequency = frequency
-        fldigi.rig.mode = mode
-
-
-    def send_tx(json):
-
-        fldigi.text.clear_rx()
-        fldigi.text.clear_tx()
-        fldigi.text.add_tx(json)
-        fldigi.main.send(json, block=True, timeout=500)
-
-        print("Text Sent..")
-
-
-    def get_rx():
-
-        
-        rx_text = fldigi.text.get_rx_data()
-
-        return str(rx_text, 'utf-8')
-
-
-    #LOGIC GOES UNDER HERE
-
-    def radio_setup(mode, c_freq):
-
-        if get_modem_name != mode or get_modem_carrier != c_freq:
-
-            set_modem(mode, c_freq)
-
-        if get_rig_frequency != 7071000.0 or get_rig_mode != 'USB':
-
-            set_frequency(7071000.0, 'USB')
+    fldigi.text.clear_rx()
 
     while True:
+        rx_text = fldigi.text.get_rx(1,50)
+        #rx_text = fldigi.text.get_rx_data()
 
-        if get_rx():
+        rx_text = str(rx_text, 'ISO-8859–1')
 
-            decoded = (get_rx())
-            #decoded_string = decoded.decode()
-            print (decoded)
+        if rx_text == '':
+            print("Nothing RX'd")
+            time.sleep(20)
+        else:        
+            print(rx_text)
+            time.sleep(20)
 
-            msg_recived = True
+    # while True:
+
+    #     if get_rx():
+
+    #         decoded = (get_rx())
+    #         #decoded_string = decoded.decode()
+    #         print (decoded)
+
+    #         msg_recived = True
             
 
 
-        if msg_recived == True:
+    #     if msg_recived == True:
 
 
-            print("Received found data. Yay!")
+    #         print("Received found data. Yay!")
 
-            print(get_rx())
+    #         print(get_rx())
 
-            time.sleep(1)
+    #         time.sleep(1)
 
 
-        else:
+    #     else:
         
-            print("Nope, continuing to listen")
-            time.sleep(1)
+    #         print("Nope, continuing to listen")
+    #         time.sleep(1)
+
+    
+        
+
+
+#LOGIC GOES UNDER HERE
+
+def radio_setup(frequency, mode, c_freq):
+
+    if get_modem_name != mode or get_modem_carrier != c_freq:
+
+        set_modem(mode, c_freq)
+
+    if get_rig_frequency != frequency or get_rig_mode != 'USB':
+
+        set_frequency(frequency, 'USB')
+
+
