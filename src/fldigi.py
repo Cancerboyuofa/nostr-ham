@@ -2,7 +2,7 @@ import pyfldigi
 import time
 
 fldigi = pyfldigi.Client()
-
+rx_len = 0
 msg_recived = False
 
 # ----------FLDIGI START AND INIT CLASS  ---------- #
@@ -56,23 +56,30 @@ def send_tx(json):
 
     print("Text Sent..")
 
+"""
+Docstring Test
 
+"""
 def get_rx():
-
+   
     fldigi.text.clear_rx()
 
     while True:
-        rx_text = fldigi.text.get_rx(1,50)
+        
+        rx_len = fldigi.text.get_rx_length()
+        print("Length:", rx_len)
+        rx_text = fldigi.text.get_rx(0,rx_len)
         #rx_text = fldigi.text.get_rx_data()
 
         rx_text = str(rx_text, 'ISO-8859–1')
 
         if rx_text == '':
             print("Nothing RX'd")
-            time.sleep(20)
+            time.sleep(100)
         else:        
             print(rx_text)
-            time.sleep(20)
+            fldigi.text.clear_rx()
+            time.sleep(100)
 
     # while True:
 

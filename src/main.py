@@ -11,18 +11,24 @@ fl.radio_setup(7025000.0,"BPSK63", 1500)
 
 print('Setting up radio...')
 
-fl.get_rx()
 
-text = input('Please enter the text to transmit:\n')
+q = input("do you want to send or rx?\n")
 
-confirm_tx = input("Do you want to transmit? Y/N\n")
-
-if confirm_tx.upper() == 'Y':
-
-    fl.send_tx(text)
-
+if q.upper() == 'RX':
+        print("Starting TO Receive...")
+        fl.get_rx()
 else:
-    print("You chose not to transmit")
+
+        transmit = input('Please enter the text to transmit:\n')
+
+        confirm_tx = input("Are you sure want to transmit:" + transmit + "? Y/N\n")
+
+        if confirm_tx.upper() == 'Y':
+
+                fl.send_tx(transmit)
+
+        else:
+                print("You chose not to transmit")
 
 
 
