@@ -7,28 +7,28 @@ import relay
 # -------------------- FLDigi Setup & TX ------------------------ #
 
 
-fl.radio_setup(7025000.0,"BPSK63", 1500)
+# fl.radio_setup(7025000.0,"BPSK63", 1500)
 
-print('Setting up radio...')
+# print('Setting up radio...')
 
 
-q = input("do you want to send or rx?\n")
+# q = input("do you want to send or rx?\n")
 
-if q.upper() == 'RX':
-        print("Starting TO Receive...")
-        fl.get_rx()
-else:
+# if q.upper() == 'RX':
+#         print("Starting TO Receive...")
+#         fl.get_rx()
+# else:
 
-        transmit = input('Please enter the text to transmit:\n')
+#         transmit = input('Please enter the text to transmit:\n')
 
-        confirm_tx = input("Are you sure want to transmit:" + transmit + "? Y/N\n")
+#         confirm_tx = input("Are you sure want to transmit:" + transmit + "? Y/N\n")
 
-        if confirm_tx.upper() == 'Y':
+#         if confirm_tx.upper() == 'Y':
 
-                fl.send_tx(transmit)
+#                 fl.send_tx(transmit)
 
-        else:
-                print("You chose not to transmit")
+#         else:
+#                 print("You chose not to transmit")
 
 
 
@@ -62,5 +62,14 @@ def keys_gen():
                 public_key = check_keys[1]      
 
         # --- Open Relay Socket and Get Last 10 Posts(test only) --- #
+        
 
         relay.open_socket("e3aefda887252a72cee3578d33b2dcd90e9fe53b8bed6347ef5e26f74211adbb")
+
+keys_gen()
+
+
+        
+
+       
+
