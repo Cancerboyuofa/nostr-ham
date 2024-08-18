@@ -13,7 +13,6 @@ msg_recived = False
 
 # ---- GETTERS AND SETTERS HERE ---- #
 
-
 def get_modem_name():
 
     return fldigi.modem.name
@@ -56,10 +55,7 @@ def send_tx(json):
 
     print("Text Sent..")
 
-"""
-Docstring Test
 
-"""
 def get_rx():
    
     fldigi.text.clear_rx()
@@ -75,11 +71,11 @@ def get_rx():
 
         if rx_text == '':
             print("Nothing RX'd")
-            time.sleep(100)
+            time.sleep(50)
         else:        
             print(rx_text)
             fldigi.text.clear_rx()
-            time.sleep(100)
+            time.sleep(50)
 
     # while True:
 

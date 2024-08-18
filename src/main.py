@@ -4,31 +4,32 @@ import relay
 
 
 
-# -------------------- FLDigi Setup & TX ------------------------ #
+#-------------------- FLDigi Setup & TX ------------------------ #
 
 
-# fl.radio_setup(7025000.0,"BPSK63", 1500)
+fl.radio_setup(7025000.0,"BPSK63", 1500)
 
-# print('Setting up radio...')
+print('Setting up radio...')
 
 
-# q = input("do you want to send or rx?\n")
 
-# if q.upper() == 'RX':
-#         print("Starting TO Receive...")
-#         fl.get_rx()
-# else:
+q = input("do you want to send or rx?\n")
 
-#         transmit = input('Please enter the text to transmit:\n')
+if q.upper() == 'RX':
+        print("Starting TO Receive...")
+        fl.get_rx()
+else:
 
-#         confirm_tx = input("Are you sure want to transmit:" + transmit + "? Y/N\n")
+        transmit = input('Please enter the text to transmit:\n')
 
-#         if confirm_tx.upper() == 'Y':
+        confirm_tx = input("Are you sure want to transmit:" + transmit + "? Y/N\n")
 
-#                 fl.send_tx(transmit)
+        if confirm_tx.upper() == 'Y':
 
-#         else:
-#                 print("You chose not to transmit")
+                fl.send_tx(transmit)
+
+        else:
+                print("You chose not to transmit")
 
 
 
